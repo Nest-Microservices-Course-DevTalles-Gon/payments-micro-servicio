@@ -1,0 +1,33 @@
+@url = http://localhost:3003
+
+
+### Create a payment session
+POST {{url}}/payments/create-payment-session
+Content-Type: application/json
+
+{
+    "orderId": "123456789",
+    "currency": "usd",
+    "items": [
+        {
+            "name": "T-Shirt",
+            "price": 20.01,
+            "quantity": 2
+        },
+        {
+            "name": "Pants",
+            "price": 30.45,
+            "quantity": 1
+        }
+    ]
+}
+
+### Get payment success
+GET {{url}}/payments/success
+
+### Get payment cancel
+GET {{url}}/payments/cancelled
+
+### Stripe Webhook
+
+POST {{url}}/payments/webhook
