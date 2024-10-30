@@ -70,16 +70,14 @@ export class PaymentsService {
             case 'charge.succeeded':
                 const chargeSucceded = event.data.object;
                 const payload = {
-                    stripePayment: chargeSucceded.id,
+                    stripePaymentId: chargeSucceded.id,
                     orderId: chargeSucceded.metadata.orderId,
                     receiptUrl: chargeSucceded.receipt_url
                 }
 
-                // this.logger.log({ payload })
-
                 await this.client.emit('payment.succeeded', payload)
 
-                await this.client
+                this.logger.log(`Payment succeeded`)
 
                 break;
 
